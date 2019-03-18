@@ -4,12 +4,31 @@ require_once("config.php");
 
 if(isset($_POST['register'])){
     // filter data yang diinputkan
-    // enkripsi password
-    // menyiapkan query  
-    // bind parameter ke query  
-    // eksekusi query untuk menyimpan ke database
-    // jika query simpan berhasil, maka user sudah terdaftar
-    // maka alihkan ke halaman login
+
+        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+        // enkripsi password
+
+
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        // menyiapkan query
+
+        $stmt = $db->prepare($sql);
+        // bind parameter ke query
+        $params = array(
+            ":name" => $name,
+            ":username" => $username,
+            ":password" => $password,
+            ":email" => $email
+        );
+        // eksekusi query untuk menyimpan ke database
+    
+
+        // jika query simpan berhasil, maka user sudah terdaftar
+        // maka alihkan ke halaman login
+        
+    
+ 
 }
 
 ?>
